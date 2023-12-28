@@ -7,6 +7,10 @@
 body {
     background-color: beige;
 }
+h1 {
+    margin: 30px auto 0px;
+    text-align: center;
+}
 .student-dashboard{
     max-width: 70vw;
     height: auto;
