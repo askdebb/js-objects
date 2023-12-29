@@ -42,33 +42,53 @@ const studentInfo = [
     }
 ]
 
-function firstPerson (){
+function academicYearResults (){
     let students = studentInfo.length;
     let academicPerformance = [];
-    let i = 0;
-    while(i < students){
-    // termperformanceIndex = i;
+    let indexCounter = 0;
+    while(indexCounter < students){
+
     let totalTermPerformance = 0;
     let averageTermPerformance = 0;
     
-    let personOne = studentInfo[i].performanceTerm;
+    let personOne = studentInfo[indexCounter].performanceTerm;
     if(personOne.length > 0){
         for(let i = 0; i < personOne.length; i++){
             totalTermPerformance += personOne[i] ;
             averageTermPerformance = Math.floor(totalTermPerformance / personOne.length);
         }
     }
-    console.log("Average term performance for person "+ studentInfo[i]["name"] +" is: "+ averageTermPerformance);
-    i++;
-    academicPerformance.push(averageTermPerformance);
-   
+    console.log("Average term performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageTermPerformance);
+    indexCounter++;
+    academicPerformance.push(averageTermPerformance); 
 }
-
-
 console.log(academicPerformance);
 }
+function coreSubjects (){
+    let students = studentInfo.length;
+    let academicCoreSubjects = [];
+    let indexCounter = 0;
+    while(indexCounter < students){
 
-firstPerson();
+    let totalCoreSubjectPerformance = 0;
+    let averageCoreSubjectPerformance = 0;
+    
+    let learner = studentInfo[indexCounter].performanceSubject;
+    if(learner.length > 0){
+        for(let i = 0; i < learner.length; i++){
+            totalCoreSubjectPerformance += learner[i] ;
+            averageCoreSubjectPerformance = Math.floor(totalCoreSubjectPerformance / learner.length);
+        }
+    }
+    console.log("Average Core subjects performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageCoreSubjectPerformance);
+    indexCounter++;
+    academicCoreSubjects.push(averageCoreSubjectPerformance); 
+}
+console.log(academicCoreSubjects);
+}
+
+academicYearResults();
+coreSubjects();
 
 
 
