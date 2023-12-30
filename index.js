@@ -1,4 +1,5 @@
 let termperformanceIndex;
+let academicCoreSubjects;
 
 // buttons mapped with on HTML 
 const buttonFirst   =   $(".b1");
@@ -28,16 +29,32 @@ const studentInfo = [
         name: "Christopher Wiafe Debrah",
         age: 27,
         gender: "Male",
-        performanceTerm: [80, 43, 34 ],
-        performanceSubject: [90, 56, 87 ],
+        performanceTerm: [10, 13, 14 ],
+        performanceSubject: [10, 16, 17 ],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
     {
         name: "Daasebere Dwamena",
-        age: 17,
+        age: 34,
         gender: "Male",
-        performanceTerm: [90, 43, 39],
-        performanceSubject: [100, 76, 7],
+        performanceTerm: [90, 100, 39],
+        performanceSubject: [100, 76, 97],
+        nextLevel : [promotedStatus, classPosition, totalStudents],
+    },
+    {
+        name: "Emmanuella Dwamena",
+        age: 17,
+        gender: "Female",
+        performanceTerm: [10, 19, 19],
+        performanceSubject: [20, 39, 19],
+        nextLevel : [promotedStatus, classPosition, totalStudents],
+    },
+    {
+        name: "Helpsolina Asante",
+        age: 47,
+        gender: "Female",
+        performanceTerm: [90, 24, 29],
+        performanceSubject: [90, 56, 49],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     }
 ]
@@ -58,15 +75,17 @@ function academicYearResults (){
             averageTermPerformance = Math.floor(totalTermPerformance / personOne.length);
         }
     }
-    console.log("Average term performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageTermPerformance);
+    // console.log("Average term performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageTermPerformance);
     indexCounter++;
     academicPerformance.push(averageTermPerformance); 
 }
-console.log(academicPerformance);
+ 
+// console.log(academicPerformance);
+return academicPerformance;
 }
 function coreSubjects (){
     let students = studentInfo.length;
-    let academicCoreSubjects = [];
+    academicCoreSubjects = [];
     let indexCounter = 0;
     while(indexCounter < students){
 
@@ -80,15 +99,104 @@ function coreSubjects (){
             averageCoreSubjectPerformance = Math.floor(totalCoreSubjectPerformance / learner.length);
         }
     }
-    console.log("Average Core subjects performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageCoreSubjectPerformance);
+    // console.log("Average Core subjects performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageCoreSubjectPerformance);
     indexCounter++;
     academicCoreSubjects.push(averageCoreSubjectPerformance); 
 }
-console.log(academicCoreSubjects);
+// console.log(academicCoreSubjects);
+return academicCoreSubjects;
 }
 
-academicYearResults();
-coreSubjects();
+let ap = academicYearResults();
+let acs = coreSubjects();
+
+
+function finalOverAllPerformance (){
+    let finalOverAllHolder = [];
+    let academicCS = acs.length;
+    for( let i = 0; i < academicCS; i++){
+        let finalOverAllHolderResult = acs[i] + ap[i];
+        finalOverAllHolder.push(finalOverAllHolderResult);
+    }
+    // console.log(finalOverAllHolder);
+    return finalOverAllHolder;
+    // console.log(academicCS);
+    console.log(Math.max(...finalOverAllHolder));
+}
+
+let foap = finalOverAllPerformance();
+console.log(foap);
+
+
+buttonFirst.on("click", function(e){
+   alert(foap.indexOf(Math.max(...foap)));
+});
+
+
+
+function findSecondLargest(arr) {
+    let largest = arr[0];
+    let secondLargest = -Infinity;
+  for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > largest) {
+        secondLargest = largest;
+        largest = arr[i];
+      } else if (arr[i] < largest && arr[i] > secondLargest) {
+        secondLargest = arr[i];
+      }
+    }
+    return secondLargest;
+  }
+
+  buttonSecond.on("click", function (){
+    let sb = findSecondLargest(foap);
+    alert(foap.indexOf(sb));
+  });
+
+function findThirdLargest(arr) {
+    let firstLargest = arr[0];
+    let secondLargest = arr[1];
+    let thirdLargest = -Infinity;
+    
+  for (let i = 2; i < arr.length; i++) {
+      if (arr[i] < firstLargest && arr[i] < secondLargest) {
+        thirdLargest = arr[i];
+      } 
+      
+      else {
+        continue;
+      }
+      
+    }
+    return thirdLargest;
+  }
+
+  buttonThird.on("click", function (){
+    let tb = findThirdLargest(foap);
+    alert(foap.indexOf(tb));
+  });
+
+
+//   buttonThird.on("click", function(e){
+//     alert(foap.indexOf(Math.min(...foap)));
+//  });
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
