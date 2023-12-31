@@ -1,5 +1,6 @@
 let termperformanceIndex;
 let academicCoreSubjects;
+let emptyBox;
 
 // buttons mapped with on HTML 
 const buttonFirst   =   $(".b1");
@@ -7,8 +8,8 @@ const buttonSecond  =   $(".b2");
 const buttonThird   =   $(".b3");
 
 const studentName   = $("#student-name");
-const studentAge    = $("student-age");
-const studentGender = $("student-gender");
+const studentAge    = $("#student-age");
+const studentGender = $("#student-gender");
 
 
 const academicFirstTerm   = $("#academic-first-term");
@@ -16,12 +17,12 @@ const academicSecondTerm  = $("#academic-second-term");
 const academicThirdTerm   = $("#academic-third-term");
 
 const subjectMathematics     = $("#subject-mathematics");
-const subjectEnglishLanguage = $("subject-english-language");
-const subjectIntScience      = $("subject-int-science");
+const subjectEnglishLanguage = $("#subject-english-language");
+const subjectIntScience      = $("#subject-int-science");
 
 const promotionStatus     = $("#promotion-status");
-const promotionPosition   = $("promotion-position");
-const promotionEnrollment = $("promotion-enrollment");
+const promotionPosition   = $("#promotion-position");
+const promotionEnrollment = $("#promotion-enrollment");
 
 
 const studentInfo = [
@@ -29,15 +30,23 @@ const studentInfo = [
         name: "Christopher Wiafe Debrah",
         age: 27,
         gender: "Male",
-        performanceTerm: [10, 13, 14 ],
-        performanceSubject: [10, 16, 17 ],
+        performanceTerm: [0, 1, 1 ],
+        performanceSubject: [10, 6, 7 ],
+        nextLevel : [promotedStatus, classPosition, totalStudents],
+    },
+    {
+        name: "Keziah Wiafe Debrah",
+        age: 27,
+        gender: "Female",
+        performanceTerm: [1, 11, 1 ],
+        performanceSubject: [1, 6, 17 ],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
     {
         name: "Daasebere Dwamena",
         age: 34,
         gender: "Male",
-        performanceTerm: [90, 100, 39],
+        performanceTerm: [80, 100, 39],
         performanceSubject: [100, 76, 97],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
@@ -45,8 +54,8 @@ const studentInfo = [
         name: "Emmanuella Dwamena",
         age: 17,
         gender: "Female",
-        performanceTerm: [10, 19, 19],
-        performanceSubject: [20, 39, 19],
+        performanceTerm: [4, 1, 1],
+        performanceSubject: [2, 9, 1],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
     {
@@ -58,6 +67,27 @@ const studentInfo = [
         nextLevel : [promotedStatus, classPosition, totalStudents],
     }
 ]
+// console.log("Zeroth person: "+studentInfo[0].name);
+// console.log("First person: "+studentInfo[1].name);
+// console.log("Second person: "+studentInfo[2].name);
+// console.log("Third person: "+studentInfo[3].name);
+// console.log("Fourth person: "+studentInfo[4].name);
+
+function fillFormWithLearnerInfo(learner){
+  studentName.text(studentInfo[learner].name)
+  studentAge.text(studentInfo[learner].age);
+  studentGender.text(studentInfo[learner].gender);
+
+  academicFirstTerm.text(studentInfo[learner].performanceTerm[0])
+  academicSecondTerm.text(studentInfo[learner].performanceTerm[1])
+  academicThirdTerm.text(studentInfo[learner].performanceTerm[2])
+  
+  subjectMathematics.text(studentInfo[learner].performanceSubject[0])
+  subjectEnglishLanguage.text(studentInfo[learner].performanceSubject[1])
+  subjectIntScience.text(studentInfo[learner].performanceSubject[2])
+
+}
+ 
 
 function academicYearResults (){
     let students = studentInfo.length;
@@ -128,8 +158,9 @@ let foap = finalOverAllPerformance();
 console.log(foap);
 
 
-buttonFirst.on("click", function(e){
-   alert(foap.indexOf(Math.max(...foap)));
+buttonFirst.on("click", function(){
+   let studentIndexInfo = (foap.indexOf(Math.max(...foap)));
+   fillFormWithLearnerInfo(studentIndexInfo);
 });
 
 
@@ -149,8 +180,9 @@ function findSecondLargest(arr) {
   }
 
   buttonSecond.on("click", function (){
-    let sb = findSecondLargest(foap);
-    alert(foap.indexOf(sb));
+    let sb = foap.indexOf(findSecondLargest(foap));
+    fillFormWithLearnerInfo(sb);
+    // alert(foap.indexOf(sb));
   });
 
 function findThirdLargest(arr) {
@@ -159,12 +191,31 @@ function findThirdLargest(arr) {
     let thirdLargest = -Infinity;
     
   for (let i = 2; i < arr.length; i++) {
-      if (arr[i] < firstLargest && arr[i] < secondLargest) {
+      if (arr[i] > firstLargest && arr[i] > secondLargest) {
+        thirdLargest = firstLargest;
+        firstLargest = arr[i];
+        if(thirdLargest > secondLargest){
+          emptyBox = thirdLargest;
+          thirdLargest = secondLargest;
+          secondLargest = emptyBox;
+        }
+      }
+      else if ( arr[i] > firstLargest && arr[i] < secondLargest){
+          thirdLargest = firstLargest;
+          firstLargest = secondLargest;
+          secondLargest = arr[i];
+      }
+
+      else if (arr[i] < firstLargest && arr[i] > secondLargest){
+        thirdLargest = secondLargest;
+        secondLargest = arr[i];
+      }
+      else if (arr[i] < firstLargest && arr[i] < secondLargest){
         thirdLargest = arr[i];
-      } 
+      }
       
       else {
-        continue;
+        console.log("more logics to be done");
       }
       
     }
@@ -172,8 +223,9 @@ function findThirdLargest(arr) {
   }
 
   buttonThird.on("click", function (){
-    let tb = findThirdLargest(foap);
-    alert(foap.indexOf(tb));
+    let tb = foap.indexOf(findThirdLargest(foap));
+    fillFormWithLearnerInfo(tb);
+    // alert(foap.indexOf(tb));
   });
 
 
@@ -182,7 +234,7 @@ function findThirdLargest(arr) {
 //  });
 
 
- 
+
 
 
 
