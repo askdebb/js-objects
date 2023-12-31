@@ -69,3 +69,47 @@ h2 {
     background-image: linear-gradient( #25212181 , #c07029);
 }
 
+
+/* media queries */
+
+@media only screen and (max-width:876px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .positions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .position {
+        margin-bottom: 0.7rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .subjects > h2 {
+        font-size: 0.8rem;
+    }
+
+    .students #student, 
+    .academic-records #academic-record, 
+    .subjects #subject, 
+    .promotion-status #promo {
+        display: inline-block;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+
+    .promotion-status #promo {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}
