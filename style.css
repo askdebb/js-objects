@@ -76,6 +76,9 @@ h2 {
     h1 {
         font-size: 1.5rem;
     }
+    .student-dashboard{
+        max-width: 90%;
+    }
 
     .positions {
         display: flex;

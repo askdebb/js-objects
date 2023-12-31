@@ -54,7 +54,7 @@ const studentInfo = [
         name: "Emmanuella Dwamena",
         age: 17,
         gender: "Female",
-        performanceTerm: [4, 1, 1],
+        performanceTerm: [4, 91, 1],
         performanceSubject: [2, 9, 1],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
@@ -62,7 +62,7 @@ const studentInfo = [
         name: "Helpsolina Asante",
         age: 47,
         gender: "Female",
-        performanceTerm: [90, 24, 29],
+        performanceTerm: [90, 4, 29],
         performanceSubject: [90, 56, 49],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     }
