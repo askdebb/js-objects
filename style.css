@@ -27,7 +27,7 @@ h1::after{
 .student-dashboard{
     max-width: 70vw;
     height: auto;
-    margin: 40px auto 0px;
+    margin: 40px auto 20px;
     background-color: #272429;
     
     color: azure;
