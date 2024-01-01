@@ -30,41 +30,55 @@ const studentInfo = [
         age: 27,
         gender: "Male",
         performanceTerm: [0, 1, 1 ],
-        performanceSubject: [10, 6, 7 ],
-        nextLevel : [promotedStatus, classPosition, totalStudents],
+        performanceSubject: [10, 6, 7 ]
     },
     {
         name: "Keziah Wiafe Debrah",
         age: 27,
         gender: "Female",
         performanceTerm: [1, 11, 1 ],
-        performanceSubject: [1, 6, 17 ],
-        nextLevel : [promotedStatus, classPosition, totalStudents],
+        performanceSubject: [1, 6, 17 ]
     },
     {
         name: "Daasebere Dwamena",
         age: 34,
         gender: "Male",
         performanceTerm: [1, 0, 4],
-        performanceSubject: [1,1, 1],
-        nextLevel : [promotedStatus, classPosition, totalStudents],
+        performanceSubject: [1,1, 1]
     },
     {
         name: "Emmanuella Dwamena",
         age: 17,
         gender: "Female",
         performanceTerm: [4, 91, 1],
-        performanceSubject: [2, 9, 1],
-        nextLevel : [promotedStatus, classPosition, totalStudents],
+        performanceSubject: [2, 9, 1]
     },
     {
         name: "Helpsolina Asante",
         age: 47,
         gender: "Female",
         performanceTerm: [ -4, 29, 0],
-        performanceSubject: [0, 56, 49],
-        nextLevel : [promotedStatus, classPosition, totalStudents],
+        performanceSubject: [0, 56, 49]
     }
+]
+
+
+const stats = [
+  {
+    status: "Promoted",
+    position: "1st",
+    noOnRoll: studentInfo.length,
+  },
+  {
+    status: "Probation",
+    position: "2nd",
+    noOnRoll: studentInfo.length,
+  },
+  {
+    status: "Repeat",
+    position: "3rd",
+    noOnRoll: studentInfo.length,
+  },
 ]
 // console.log("Zeroth person: "+studentInfo[0].name);
 // console.log("First person: "+studentInfo[1].name);
@@ -86,6 +100,7 @@ function fillFormWithLearnerInfo(learner){
   subjectIntScience.text(studentInfo[learner].performanceSubject[2])
 
 }
+
  
 
 function academicYearResults (){
@@ -141,8 +156,6 @@ function finalOverAllPerformance (){
     let finalOverAllHolderResult;
     for( let i = 0; i < academicCS; i++){
         finalOverAllHolderResult = academicCoreSubject[i] + academicYrperformance[i];
-        console.log(academicYrperformance[i]);
-        console.log(academicCoreSubject[i]);
         finalOverAllHolder.push(finalOverAllHolderResult);   
     }
     return finalOverAllHolder;
@@ -155,6 +168,8 @@ console.log(finalOverAllAcademicPerformance);
 buttonFirst.on("click", function(){
    let studentIndexInfo = (finalOverAllAcademicPerformance.indexOf(Math.max(...finalOverAllAcademicPerformance)));
    fillFormWithLearnerInfo(studentIndexInfo);
+   promoStatus(stats[0]);
+   statusColor(stats[0]);
 });
 
 function findSecondLargest(arr) {
@@ -174,6 +189,8 @@ function findSecondLargest(arr) {
   buttonSecond.on("click", function (){
     let secondButtonPressed = finalOverAllAcademicPerformance.indexOf(findSecondLargest(finalOverAllAcademicPerformance));
     fillFormWithLearnerInfo(secondButtonPressed);
+    promoStatus(stats[1]);
+    statusColor(stats[1]);
 
   });
 
@@ -217,34 +234,25 @@ function findThirdLargest(arr) {
   buttonThird.on("click", function (){
     let thirdButtonPressed = finalOverAllAcademicPerformance.indexOf(findThirdLargest(finalOverAllAcademicPerformance));
     fillFormWithLearnerInfo(thirdButtonPressed);
+    promoStatus(stats[2]);
+    statusColor(stats[2]);
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function promotedStatus (){
+function promoStatus (state){
+  promotionStatus.text(state.status);
+  promotionPosition.text(state.position)
+  promotionEnrollment.text(state.noOnRoll);
 
 }
-function classPosition (){
 
-}
-function totalStudents (){
-
+function statusColor (e){
+  if(e.status === "Promoted"){
+    promotionStatus.css("color", "green");
+  }
+  else if(e.status === "Probation"){
+    promotionStatus.css("color", "yellow");
+  }
+  else if(e.status === "Repeat"){
+    promotionStatus.css("color", "red");
+  }
 }
