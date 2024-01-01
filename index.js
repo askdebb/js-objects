@@ -170,6 +170,8 @@ buttonFirst.on("click", function(){
    fillFormWithLearnerInfo(studentIndexInfo);
    promoStatus(stats[0]);
    statusColor(stats[0]);
+   let firstSound = new Audio("./sounds/promoted.mp3");
+    firstSound.play();
 });
 
 function findSecondLargest(arr) {
@@ -191,6 +193,8 @@ function findSecondLargest(arr) {
     fillFormWithLearnerInfo(secondButtonPressed);
     promoStatus(stats[1]);
     statusColor(stats[1]);
+    let secondSound = new Audio("./sounds/probation.mp3");
+    secondSound.play();
 
   });
 
@@ -236,12 +240,16 @@ function findThirdLargest(arr) {
     fillFormWithLearnerInfo(thirdButtonPressed);
     promoStatus(stats[2]);
     statusColor(stats[2]);
+    let thirdSound = new Audio("./sounds/repeat.mp3");
+    thirdSound.play();
+
   });
 
 function promoStatus (state){
   promotionStatus.text(state.status);
   promotionPosition.text(state.position)
   promotionEnrollment.text(state.noOnRoll);
+
 
 }
 
