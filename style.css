@@ -35,6 +35,8 @@ h1::after{
     border-radius: 5px;
     box-shadow: 1px 1px rgb(168, 160, 160)
 }
+
+
 .positions, .students, .academic-records, .subjects, .promotion-status{
     padding: 20px 30px;
 }
@@ -83,7 +85,7 @@ h2 {
     .position {
         width: 7rem;
         font-size: 0.9rem;
-        margin: 0px 5px;
+        margin: 0px 3px;
         margin-bottom: 0.7rem;
     }
 
@@ -93,7 +95,7 @@ h2 {
     }
 
     .subjects > h2 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .students #student, 
@@ -106,12 +108,14 @@ h2 {
     }
 }
 
-@media only screen and (max-width:650px) {
-    
-    /* .positions {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    } */
+@media only screen and (max-width:465px) {
+   
+    .students > h2 {
+        font-size: 1.1rem;
+    }
+
+    span#student-name  {
+        display: block;
+    }
 }
+
