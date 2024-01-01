@@ -166,12 +166,13 @@ console.log(finalOverAllAcademicPerformance);
 
 
 buttonFirst.on("click", function(){
+  let firstSound = new Audio("./sounds/promoted.mp3");
+  firstSound.play();
    let studentIndexInfo = (finalOverAllAcademicPerformance.indexOf(Math.max(...finalOverAllAcademicPerformance)));
    fillFormWithLearnerInfo(studentIndexInfo);
    promoStatus(stats[0]);
    statusColor(stats[0]);
-   let firstSound = new Audio("./sounds/promoted.mp3");
-    firstSound.play();
+  
 });
 
 function findSecondLargest(arr) {
