@@ -2,7 +2,6 @@ let termperformanceIndex;
 let academicCoreSubjects;
 let emptyBox;
 
-// buttons mapped with on HTML 
 const buttonFirst   =   $(".b1");
 const buttonSecond  =   $(".b2");
 const buttonThird   =   $(".b3");
@@ -46,8 +45,8 @@ const studentInfo = [
         name: "Daasebere Dwamena",
         age: 34,
         gender: "Male",
-        performanceTerm: [80, 100, 39],
-        performanceSubject: [100, 76, 97],
+        performanceTerm: [1, 0, 4],
+        performanceSubject: [1,1, 1],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     },
     {
@@ -62,8 +61,8 @@ const studentInfo = [
         name: "Helpsolina Asante",
         age: 47,
         gender: "Female",
-        performanceTerm: [90, 4, 29],
-        performanceSubject: [90, 56, 49],
+        performanceTerm: [ -4, 29, 0],
+        performanceSubject: [0, 56, 49],
         nextLevel : [promotedStatus, classPosition, totalStudents],
     }
 ]
@@ -105,14 +104,12 @@ function academicYearResults (){
             averageTermPerformance = Math.floor(totalTermPerformance / personOne.length);
         }
     }
-    // console.log("Average term performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageTermPerformance);
     indexCounter++;
     academicPerformance.push(averageTermPerformance); 
+} 
+  return academicPerformance;
 }
- 
-// console.log(academicPerformance);
-return academicPerformance;
-}
+
 function coreSubjects (){
     let students = studentInfo.length;
     academicCoreSubjects = [];
@@ -125,45 +122,40 @@ function coreSubjects (){
     let learner = studentInfo[indexCounter].performanceSubject;
     if(learner.length > 0){
         for(let i = 0; i < learner.length; i++){
-            totalCoreSubjectPerformance += learner[i] ;
+            totalCoreSubjectPerformance += learner[i];
             averageCoreSubjectPerformance = Math.floor(totalCoreSubjectPerformance / learner.length);
         }
     }
-    // console.log("Average Core subjects performance for person "+ studentInfo[indexCounter]["name"] +" is: "+ averageCoreSubjectPerformance);
     indexCounter++;
     academicCoreSubjects.push(averageCoreSubjectPerformance); 
 }
-// console.log(academicCoreSubjects);
-return academicCoreSubjects;
+  return academicCoreSubjects;
 }
 
-let ap = academicYearResults();
-let acs = coreSubjects();
-
+let academicYrperformance = academicYearResults();
+let academicCoreSubject = coreSubjects();
 
 function finalOverAllPerformance (){
     let finalOverAllHolder = [];
-    let academicCS = acs.length;
+    let academicCS = academicCoreSubject.length;
+    let finalOverAllHolderResult;
     for( let i = 0; i < academicCS; i++){
-        let finalOverAllHolderResult = acs[i] + ap[i];
-        finalOverAllHolder.push(finalOverAllHolderResult);
+        finalOverAllHolderResult = academicCoreSubject[i] + academicYrperformance[i];
+        console.log(academicYrperformance[i]);
+        console.log(academicCoreSubject[i]);
+        finalOverAllHolder.push(finalOverAllHolderResult);   
     }
-    // console.log(finalOverAllHolder);
     return finalOverAllHolder;
-    // console.log(academicCS);
-    console.log(Math.max(...finalOverAllHolder));
 }
 
-let foap = finalOverAllPerformance();
-console.log(foap);
+let finalOverAllAcademicPerformance = finalOverAllPerformance();
+console.log(finalOverAllAcademicPerformance);
 
 
 buttonFirst.on("click", function(){
-   let studentIndexInfo = (foap.indexOf(Math.max(...foap)));
+   let studentIndexInfo = (finalOverAllAcademicPerformance.indexOf(Math.max(...finalOverAllAcademicPerformance)));
    fillFormWithLearnerInfo(studentIndexInfo);
 });
-
-
 
 function findSecondLargest(arr) {
     let largest = arr[0];
@@ -180,9 +172,9 @@ function findSecondLargest(arr) {
   }
 
   buttonSecond.on("click", function (){
-    let sb = foap.indexOf(findSecondLargest(foap));
-    fillFormWithLearnerInfo(sb);
-    // alert(foap.indexOf(sb));
+    let secondButtonPressed = finalOverAllAcademicPerformance.indexOf(findSecondLargest(finalOverAllAcademicPerformance));
+    fillFormWithLearnerInfo(secondButtonPressed);
+
   });
 
 function findThirdLargest(arr) {
@@ -223,15 +215,9 @@ function findThirdLargest(arr) {
   }
 
   buttonThird.on("click", function (){
-    let tb = foap.indexOf(findThirdLargest(foap));
-    fillFormWithLearnerInfo(tb);
-    // alert(foap.indexOf(tb));
+    let thirdButtonPressed = finalOverAllAcademicPerformance.indexOf(findThirdLargest(finalOverAllAcademicPerformance));
+    fillFormWithLearnerInfo(thirdButtonPressed);
   });
-
-
-//   buttonThird.on("click", function(e){
-//     alert(foap.indexOf(Math.min(...foap)));
-//  });
 
 
 
